@@ -8,7 +8,7 @@ public class ManualShipPlacer extends ShipPlacer {
     }
 
     @Override
-    public void placeShips(PlayerField field, int[] shipSizes) {
+    public void placeShips(PlayerField field, List<Integer> shipSizes) {
 
     }
 }

@@ -61,9 +61,9 @@ public class Main {
     private static void fillPlayerField(boolean fillAutomatically, PlayerField playerField, InputParser inputParser) {
         if (fillAutomatically) {
             // different ship sizes in future
-            new RandomShipPlacer().placeShips(playerField, ShipPlacer.DEFAULT_SHIP_SIZES);
+            new RandomShipPlacer().placeShips(playerField, ShipPlacer.getDefaultShipSizes());
         } else {
-            new ManualShipPlacer(playerField.getSize(), inputParser).placeShips(playerField, ShipPlacer.DEFAULT_SHIP_SIZES);
+            new ManualShipPlacer(inputParser).placeShips(playerField, ShipPlacer.DEFAULT_SHIP_SIZES);
         }
     }
 }

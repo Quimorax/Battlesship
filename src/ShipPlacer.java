@@ -1,9 +1,9 @@
 import java.util.*;
 
 public abstract class ShipPlacer {
-    int[] DEFAULT_SHIP_SIZES = new int[]{4, 3, 3, 2, 2, 2, 1, 1, 1, 1};
+    private static final List<Integer> DEFAULT_SHIP_SIZES = List.of(4, 3, 3, 2, 2, 2, 1, 1, 1, 1);
 
-    public abstract void placeShips(PlayerField field, int[] shipSizes);
+    public abstract void placeShips(PlayerField field, List<Integer> shipSizes);
 
     protected boolean isValid(PlayerField field, Position position, Orientation orientation, int shipSize) {
         int row = position.row();
@@ -29,5 +29,9 @@ public abstract class ShipPlacer {
             shipSize--;
         }
         return true;
+    }
+
+    public static List<Integer> getDefaultShipSizes() {
+        return DEFAULT_SHIP_SIZES;
     }
 }

@@ -5,7 +5,7 @@ public class RandomShipPlacer extends ShipPlacer{
     private int playerFieldSize;
 
     @Override
-    public void placeShips(PlayerField field, int[] shipSizes) {
+    public void placeShips(PlayerField field, List<Integer> shipSizes) {
         Random random = new Random();
         for (int size : shipSizes) {
             Position position;
