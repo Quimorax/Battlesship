@@ -13,15 +13,7 @@ public class InputParser {
         this.scanner = scanner;
     }
 
-    public boolean parsePvP() {
-        return parseYesNoQuestions("Do you want to play with player? (y/n): ");
-    }
-
-    public boolean parseAutomaticFilling() {
-        return parseYesNoQuestions("Do you want to init your field automatically? (y/n): ");
-    }
-
-    private boolean parseYesNoQuestions(String message) {
+    public boolean parseYesNoQuestions(String message) {
         System.out.println(message);
         String input = scanner.next().replace("\\s+", "").toLowerCase();
 
@@ -33,7 +25,24 @@ public class InputParser {
         throw new ParseException("You must enter only y\\n");
     }
 
-    public Postion parsePosition(String input) {
+    public int parseSize() {
+        System.out.println("Enter desk size: ");
+        String input = scanner.next();
+
+        int size;
+        try {
+            size = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new ParseException(e.getMessage());
+        }
+        if (size <= 0 || size > 26) {
+            throw new ParseException("Size must be in range 0 < size <= 26");
+        }
+
+        return size;
+    }
+
+    public Position parseShipPlacement(int shipPlacement) {
 
     }
 }

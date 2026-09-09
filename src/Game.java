@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Game {
     private Player player1;
     private Player player2;
@@ -5,18 +7,20 @@ public class Game {
     private Player currentPlayer;
     private Status status;
 
-    enum Status {
+    public enum Status {
         ACTIVE, FINISHED
     }
 
-
-    public Game(boolean isPvp) {
-        this.player1 = new Player(true);  // our player
+    public Game(boolean isPvp, int size) {
+        this.player1 = new Player(false, size);  // our player
         this.currentPlayer = player1;
 
-        this.player2 = new Player(isPvp);
+        boolean isBot = !isPvp;
+        this.player2 = new Player(isBot, size);
         this.status = Status.ACTIVE;
     }
+
+
 
     public void makeMove() {
 
@@ -32,5 +36,13 @@ public class Game {
 
     public Player getCurrentPlayer() {
         return currentPlayer;
+    }
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
     }
 }

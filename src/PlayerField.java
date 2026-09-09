@@ -3,7 +3,7 @@ import java.util.List;
 
 public class PlayerField {
     private static final int DEFAULT_SIZE = 10;
-    private static int size;
+    private int size;
     private CellStatus[][] grid;
     private List<Ship> fleet;
 
@@ -33,5 +33,13 @@ public class PlayerField {
 
     public void setCell(Position position, CellStatus cellStatus) {
         grid[position.row()][position.col()] = cellStatus;
+    }
+
+    public CellStatus getCell(Position position) {
+        return grid[position.row()][position.col()];
+    }
+
+    public int getSize() {
+        return size;
     }
 }

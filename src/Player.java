@@ -16,9 +16,9 @@ public class Player {
     private PlayerField playerField;
     private boolean isBot;
 
-    public Player(boolean isPvP) {
-        this.playerField = new PlayerField();
-        this.isBot = !isPvP;
+    public Player(boolean isBot, int fieldSize) {
+        this.playerField = new PlayerField(fieldSize);
+        this.isBot = isBot;
     }
 
     public boolean isBot() {
@@ -28,4 +28,8 @@ public class Player {
     public PlayerField getPlayerField() {
         return playerField;
     }
+
+//    public void shoot(Position position, PlayerField opponentField) {
+//        opponentField.setCell(); // ???
+//    }
 }
