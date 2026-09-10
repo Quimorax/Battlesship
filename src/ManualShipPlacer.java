@@ -9,7 +9,6 @@ public class ManualShipPlacer extends ShipPlacer {
 
     @Override
     public void placeShips(PlayerField field, List<Integer> shipSizes) {
-        // TODO: add feature, that you init also List<Ship> list
         for (int size : shipSizes) {
             Position position;
             Orientation orientation;
@@ -24,15 +23,14 @@ public class ManualShipPlacer extends ShipPlacer {
                     continue;
                 }
                 position = new Position(values[0], values[1]);
-                orientation = Orientation.values()[values[2]];  // ??
+                orientation = Orientation.values()[values[2]];
 
                 if (isValid(field, position, orientation, size)) {
                     break;
                 }
             }
 
-            // fill in into place this this...
-
+            setShipPlace(field, position, orientation, size);
         }
     }
 }

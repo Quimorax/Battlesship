@@ -63,7 +63,7 @@ public class Main {
             // different ship sizes in future
             new RandomShipPlacer().placeShips(playerField, ShipPlacer.getDefaultShipSizes());
         } else {
-            new ManualShipPlacer(inputParser).placeShips(playerField, ShipPlacer.DEFAULT_SHIP_SIZES);
+            new ManualShipPlacer(inputParser).placeShips(playerField, ShipPlacer.getDefaultShipSizes());
         }
     }
 }

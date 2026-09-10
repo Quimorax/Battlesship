@@ -25,10 +25,7 @@ public class RandomShipPlacer extends ShipPlacer{
                 }
             }
 
-            for (int i = 0; i < size; i++) {
-                Position currentPosition = orientation == Orientation.HORIZONTAL ? new Position(position.row(), position.col() + i) : new Position(position.row() + i, position.col());
-                field.setCell(currentPosition, PlayerField.CellStatus.SHIP);
-            }
+            setShipPlace(field, position, orientation, size);
 
         }
     }

@@ -42,4 +42,8 @@ public class PlayerField {
     public int getSize() {
         return size;
     }
+
+    public void addSHip(Ship ship) {
+        fleet.add(ship);
+    }
 }

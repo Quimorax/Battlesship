@@ -31,6 +31,19 @@ public abstract class ShipPlacer {
         return true;
     }
 
+    protected void setShipPlace(PlayerField field, Position position, Orientation orientation, int shipSize) {
+        List<Position> positions = new ArrayList<>();
+
+        for (int i = 0; i < shipSize; i++) {
+            Position currentPosition = orientation == Orientation.HORIZONTAL ? new Position(position.row(), position.col() + i) : new Position(position.row() + i, position.col());
+            positions.add(currentPosition);
+            field.setCell(currentPosition, PlayerField.CellStatus.SHIP);
+        }
+
+        Ship ship = new Ship(positions);
+        field.addSHip(ship);
+    }
+
     public static List<Integer> getDefaultShipSizes() {
         return DEFAULT_SHIP_SIZES;
     }
