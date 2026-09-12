@@ -54,7 +54,7 @@ public class InputParser {
         Position position = parsePosition(values[0], fieldSize);
 
         String value = values[1].toUpperCase();
-        if (!value.equals("H") && value.equals("V")) {
+        if (!value.equals("H") && !value.equals("V")) {
             throw new ParseException("");
         }
 
@@ -74,8 +74,8 @@ public class InputParser {
             throw new ParseException("");
         }
 
-        int row = 'A' - input.charAt(0);
-        int col = '1' - input.charAt(1);
+        int row = input.charAt(0) - 'A';
+        int col = input.charAt(1) - '1';
 
         return new Position(row, col);
     }
