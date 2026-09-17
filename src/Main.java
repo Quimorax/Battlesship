@@ -12,7 +12,7 @@ public class Main {
 
         String message = "Do you want to fill your field automatically? (y/n): ";
         boolean playerFillAutomatically = getYesNoQuestion(message, inputParser);
-        boolean opponentFillAutomatically = false;
+        boolean opponentFillAutomatically = true;
 
         if (isPvP) {
             opponentFillAutomatically = getYesNoQuestion(message, inputParser);
@@ -20,8 +20,14 @@ public class Main {
 
         Game game = new Game(isPvP, size);
 
+        PlayerFieldRenderer.render(game.getPlayer1().getPlayerField(), game.getPlayer2().getPlayerField());
+
+        scanner.nextLine();  // to remove \n after scanner.next()
+
         fillPlayerField(playerFillAutomatically, game.getPlayer1().getPlayerField(), inputParser);
         fillPlayerField(opponentFillAutomatically, game.getPlayer2().getPlayerField(), inputParser);
+
+        PlayerFieldRenderer.render(game.getPlayer1().getPlayerField(), game.getPlayer2().getPlayerField());
 
         while (game.getStatus() == Game.Status.ACTIVE) {  // main game cycle
 

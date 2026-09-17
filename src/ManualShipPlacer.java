@@ -28,6 +28,7 @@ public class ManualShipPlacer extends ShipPlacer {
                 if (isValid(field, position, orientation, size)) {
                     break;
                 }
+                System.out.println("Position isn't valid, enter one more time\n");
             }
 
             setShipPlace(field, position, orientation, size);
