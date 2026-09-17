@@ -33,7 +33,7 @@ public class InputParser {
         try {
             size = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new ParseException(e.getMessage());
+            throw new ParseException("Incorrect format");
         }
         if (size <= 0 || size > 26) {
             throw new ParseException("Size must be in range 0 < size <= 26");
@@ -48,7 +48,7 @@ public class InputParser {
 
         String[] values = input.split(" ");
         if (values.length != 2) {
-            throw new ParseException("You have typed more than 2 objects");
+            throw new ParseException("You must typed coordinate and orientation");
         }
 
         Position position = parsePosition(values[0], fieldSize);
@@ -65,17 +65,17 @@ public class InputParser {
 
     public Position parsePosition(String input, int fieldSize) {
         if (input.length() != 2) {
-            throw new ParseException("");
+            throw new ParseException("Coordinate length must be 2");
         }
         if (input.charAt(0) < 'A' || input.charAt(0) > 'A' + fieldSize - 1) {
-            throw new ParseException("");
+            throw new ParseException("First part of coordinate is out of range");
         }
         if (input.charAt(1) < '1' || input.charAt(1) > '1' + fieldSize - 1) {
-            throw new ParseException("");
+            throw new ParseException("Second part of coordinate is out of range");
         }
 
-        int row = input.charAt(0) - 'A';
-        int col = input.charAt(1) - '1';
+        int row = input.charAt(1) - '1';
+        int col = input.charAt(0) - 'A';
 
         return new Position(row, col);
     }
