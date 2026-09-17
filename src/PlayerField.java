@@ -24,11 +24,11 @@ public class PlayerField {
     }
 
     public enum CellStatus {
-        EMPTY,     // Пустая клетка (без корабля, выстрела не было)
-        SHIP,      // Занята кораблем (выстрела не было)
-        MISS,      // Промах (выстрел в пустую клетку)
-        HIT,       // Попадание (корабль ранен)
-        SUNK       // Затоплен (все палубы корабля уничтожены)
+        EMPTY,
+        SHIP,
+        MISS,
+        HIT,
+        SUNK
     }
 
     public void setCell(Position position, CellStatus cellStatus) {
