@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class PlayerField {
     private static final int DEFAULT_SIZE = 10;
@@ -27,8 +28,9 @@ public class PlayerField {
         EMPTY,
         SHIP,
         MISS,
+        FOG,
         HIT,
-        SUNK
+        SUNK,
     }
 
     public void setCell(Position position, CellStatus cellStatus) {
@@ -45,5 +47,31 @@ public class PlayerField {
 
     public void addSHip(Ship ship) {
         fleet.add(ship);
+    }
+
+    public Ship getShip(Position position) {
+        for (Ship ship : fleet) {
+            if (ship.occupies(position)) {
+                return ship;
+            }
+        }
+        throw new NoSuchElementException();
+    }
+
+    public void renderSunkShip(Position position) {
+        if (getShip(position).isSunk()) {
+            for (Position pos : getShip(position).getPositions()) {
+                setCell(pos, PlayerField.CellStatus.SUNK);
+            }
+        }
+    }
+
+    public boolean isFleetSunk() {
+        for (Ship ship : fleet) {
+            if (!ship.isSunk()) {
+                return false;
+            }
+        }
+        return true;
     }
 }

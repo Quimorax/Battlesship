@@ -1,35 +1,44 @@
-//public enum Player {
-//    PLAYER_ONE,
-//    PLAYER_TWO,
-//    AI;
-//
-//    public Player next(boolean isPvP) {
-//        if (this == PLAYER_ONE) {
-//            return isPvP ? PLAYER_TWO : AI;
-//        }
-//        return PLAYER_ONE;
-//    }
-//}
-//
-
 public class Player {
-    private PlayerField playerField;
+    private PlayerField field;
     private boolean isBot;
+    private int id;
+    private static int playersAmount;
 
     public Player(boolean isBot, int fieldSize) {
-        this.playerField = new PlayerField(fieldSize);
+        this.field = new PlayerField(fieldSize);
         this.isBot = isBot;
+
+        playersAmount++;
+        this.id = playersAmount;
     }
 
     public boolean isBot() {
         return isBot;
     }
 
-    public PlayerField getPlayerField() {
-        return playerField;
+    public PlayerField getField() {
+        return field;
     }
 
-//    public void shoot(Position position, PlayerField opponentField) {
-//        opponentField.setCell(); // ???
-//    }
+    @Override
+    public String toString() {
+        return "Player №" + id;
+    }
+
+    public PlayerField.CellStatus shoot(Position position, PlayerField opponentField) {
+        PlayerField.CellStatus status;
+        PlayerField.CellStatus cell = opponentField.getCell(position);
+
+        status = switch (cell) {
+            case PlayerField.CellStatus.SHIP -> {
+                opponentField.getShip(position).hit();
+                yield PlayerField.CellStatus.HIT;
+            }
+            case PlayerField.CellStatus.EMPTY -> PlayerField.CellStatus.MISS;
+            default -> cell;
+        };
+
+        opponentField.setCell(position, status);
+        return status;
+    }
 }
