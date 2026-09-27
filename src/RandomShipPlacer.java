@@ -13,17 +13,10 @@ public class RandomShipPlacer extends ShipPlacer{
             int orientationCount = Orientation.values().length;
             Orientation orientation;
 
-            while (true) {  // generate valid place for ship
-                position = new Position(
-                        random.nextInt(field.getSize()),
-                        random.nextInt(field.getSize())
-                );
-
+            do {
+                position = PositionUtils.generateRandomPosition(field.getSize());
                 orientation = Orientation.values()[random.nextInt(orientationCount)];
-                if (isValid(field, position, orientation, size)) {
-                    break;
-                }
-            }
+            } while (!isValid(field, position, orientation, size));
 
             setShipPlace(field, position, orientation, size);
 

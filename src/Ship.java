@@ -5,7 +5,7 @@ public class Ship {
     private int hits = 0;
 
     public Ship(List<Position> positions) {
-        this.positions = positions;  // length = size of the ship
+        this.positions = positions;
     }
 
     public boolean occupies(Position pos) {

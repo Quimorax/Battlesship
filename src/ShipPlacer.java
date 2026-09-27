@@ -6,7 +6,6 @@ public abstract class ShipPlacer {
     public abstract void placeShips(PlayerField field, List<Integer> shipSizes);
 
     protected boolean isValid(PlayerField field, Position position, Orientation orientation, int shipSize) {
-        // row -- number, col -- letter
         for (int shift = 0; shift < shipSize; shift++){
             Position shiftedPosition = PositionUtils.shift(position, orientation, shift);
             if (!PositionUtils.isInRange(shiftedPosition, field.getSize())) {
