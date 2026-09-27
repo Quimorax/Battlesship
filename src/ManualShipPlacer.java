@@ -1,10 +1,10 @@
 import java.util.List;
 
 public class ManualShipPlacer extends ShipPlacer {
-    private final InputParser parser;
+    private final InputReader reader;
 
-    public ManualShipPlacer(InputParser parser) {
-        this.parser = parser;
+    public ManualShipPlacer(InputReader reader) {
+        this.reader = reader;
     }
 
     @Override
@@ -15,13 +15,7 @@ public class ManualShipPlacer extends ShipPlacer {
             int[] values;
 
             while (true) {
-                try {
-                    values = parser.parseShipPlacement(size, field.getSize());
-                } catch (ParseException e) {
-                    System.out.println(e.getMessage());
-                    System.out.println("Enter one more time");
-                    continue;
-                }
+                values = reader.readShipPlacement(size, field.getSize());
                 position = new Position(values[0], values[1]);
                 orientation = Orientation.values()[values[2]];
 
@@ -32,6 +26,7 @@ public class ManualShipPlacer extends ShipPlacer {
             }
 
             setShipPlace(field, position, orientation, size);
+            PlayerFieldRenderer.render(field);
         }
     }
 }
